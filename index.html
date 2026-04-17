@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SonnyMoon — Premium Children's Boutique in Bethlehem, PA</title>
+    <meta name="description" content="SonnyMoon is a thoughtfully curated children's boutique in Bethlehem, PA. Discover organic clothing, educational toys, beautiful gifts, and more for newborns to size 14.">
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "SonnyMoon",
+        "description": "Premium children's boutique store offering curated clothing, shoes, toys, and gifts in Bethlehem, PA.",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "459 Main St",
+            "addressLocality": "Bethlehem",
+            "addressRegion": "PA",
+            "addressCountry": "US"
+        },
+        "telephone": "+1-484-788-8415",
+        "sameAs": [
+            "https://www.instagram.com/sonnymoonbethlehem/",
+            "https://web.facebook.com/p/SonnyMoon-61566438214204/"
+        ],
+        "priceRange": "$$",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5.0",
+            "reviewCount": "10"
+        }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: { 50: '#FFFDF9', 100: '#FDF8F0', 200: '#FAF0E1', 300: '#F5E6D0' },
+                        rose: { 50: '#FFF5F5', 100: '#FFE8EC', 200: '#FECDD3', 300: '#FDA4AF', 400: '#F5A0B8', 500: '#E88FA3', 600: '#D4728A' },
+                        honey: { 50: '#FFFBEB', 100: '#FEF3C7', 200: '#FDE68A', 300: '#FCD34D', 400: '#FBBF24', 500: '#F59E0B' },
+                        sage: { 50: '#F0FDF4', 100: '#DCFCE7', 200: '#BBF7D0', 300: '#86EFAC', 400: '#4ADE80', 500: '#22C55E' },
+                        sky: { 50: '#F0F9FF', 100: '#E0F2FE', 200: '#BAE6FD', 300: '#7DD3FC', 400: '#38BDF8' },
+                        bark: { 600: '#5C3D3D', 700: '#3D2C2C', 800: '#2D1F1F', 900: '#1A1212' }
+                    },
+                    fontFamily: {
+                        sans: ['DM Sans', 'sans-serif'],
+                        serif: ['Cormorant Garamond', 'Georgia', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * { -webkit-font-smoothing: antialiased; }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #FDF8F0; }
+        ::-webkit-scrollbar-thumb { background: #F5A0B8; border-radius: 3px; }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(253,248,240,0.95) 0%, rgba(255,232,236,0.88) 50%, rgba(253,248,240,0.92) 100%);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+        .float-anim { animation: float 6s ease-in-out infinite; }
+        .float-anim-2 { animation: float 6s ease-in-out 2s infinite; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in-up { animation: fadeInUp 0.7s ease-out forwards; }
+        .delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .delay-2 { animation-delay: 0.2s; opacity: 0; }
+        .delay-3 { animation-delay: 0.3s; opacity: 0; }
+        .delay-4 { animation-delay: 0.4s; opacity: 0; }
+
+        /* Product card hover */
+        .product-card:hover .product-img { transform: scale(1.06); }
+
+        .soft-shadow { box-shadow: 0 4px 24px rgba(61,44,44,0.07), 0 1px 4px rgba(61,44,44,0.04); }
+        .card-hover { transition: all 0.3s cubic-bezier(0.4,0,0.2,1); }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 14px 44px rgba(61,44,44,0.12), 0 4px 12px rgba(61,44,44,0.06); }
+
+        /* Mobile menu */
+        .mobile-menu { transform: translateX(100%); transition: transform 0.3s cubic-bezier(0.4,0,0.2,1); }
+        .mobile-menu.open { transform: translateX(0); }
+
+        /* Sticky CTA */
+        .sticky-cta { transform: translateY(120px); opacity: 0; transition: all 0.4s cubic-bezier(0.4,0,0.2,1); }
+        .sticky-cta.visible { transform: translateY(0); opacity: 1; }
+
+        /* ===================== COLLECTIONS PAGE ===================== */
+        #collectionsPage { display: none; }
+        #collectionsPage.active { display: block; }
+        #homePage { display: block; }
+        #homePage.hidden-page { display: none; }
+
+        /* Collection filter buttons */
+        .collection-btn {
+            padding: 8px 18px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1.5px solid transparent;
+            white-space: nowrap;
+            background: #FDF8F0;
+            color: #3D2C2C;
+            border-color: #F5E6D0;
+        }
+        .collection-btn:hover { background: #FFE8EC; border-color: #F5A0B8; color: #2D1F1F; }
+        .collection-btn.active {
+            background: #2D1F1F;
+            color: #FDF8F0;
+            border-color: #2D1F1F;
+        }
+
+        /* Product item in collections */
+        .prod-item { display: none; }
+        .prod-item.show { display: block; }
+
+        /* ===================== PRODUCT POPUP ===================== */
+        #productPopup {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 999;
+            background: rgba(29,20,20,0.55);
+            backdrop-filter: blur(4px);
+            padding: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+        #productPopup.open { display: flex; }
+
+        .popup-inner {
+            background: #FFFDF9;
+            border-radius: 24px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 32px 80px rgba(29,20,20,0.25);
+            animation: fadeInUp 0.35s ease-out forwards;
+        }
+
+        .color-swatch {
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        .color-swatch:hover, .color-swatch.active { border-color: #2D1F1F; transform: scale(1.15); }
+
+        .size-btn {
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            border: 1.5px solid #F5E6D0;
+            background: #FDF8F0;
+            color: #3D2C2C;
+            transition: all 0.2s;
+        }
+        .size-btn:hover, .size-btn.active { background: #2D1F1F; color: #FDF8F0; border-color: #2D1F1F; }
+
+        /* Marquee */
+        .marquee-wrap { overflow: hidden; }
+        .marquee-track { display: flex; animation: marquee 28s linear infinite; width: max-content; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* Responsive fixes */
+        @media (max-width: 768px) {
+            .popup-inner { border-radius: 16px; }
+        }
+
+        /* Scrollbar in popup */
+        .popup-inner::-webkit-scrollbar { width: 4px; }
+        .popup-inner::-webkit-scrollbar-thumb { background: #F5A0B8; border-radius: 2px; }
+
+        /* Gallery hover */
+        .gallery-item:hover .gallery-img { transform: scale(1.08); }
+
+        /* Collection sidebar scroll */
+        .coll-sidebar { position: sticky; top: 100px; }
+
+        /* === WORDPRESS PLUGIN NOTE STYLES (hidden in frontend, illustrative) === */
+        /* [sonnymoon_header], [sonnymoon_hero], [sonnymoon_collections], etc */
+    </style>
+</head>
+<body class="bg-cream-100 text-bark-700 font-sans">
+
+<!-- ===================== NAVIGATION ===================== -->
+<!-- SHORTCODE: [sonnymoon_header] -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-5 md:px-8">
+        <div class="flex items-center justify-between h-20">
+            <!-- Logo -->
+            <a href="#" onclick="showHome()" class="flex items-center gap-2 group cursor-pointer">
+                <div class="w-10 h-10 rounded-full bg-rose-400 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                    <span class="iconify text-white text-lg" data-icon="ph:moon-stars-fill"></span>
+                </div>
+                <span class="font-serif text-2xl font-semibold text-bark-800 tracking-tight">SonnyMoon</span>
+            </a>
+
+            <!-- Desktop Links -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#about" onclick="showHome()" class="text-sm font-medium text-bark-700/70 hover:text-bark-800 transition-colors">Our Story</a>
+                <a href="#" onclick="showCollections(); return false;" class="text-sm font-medium text-bark-700/70 hover:text-bark-800 transition-colors">Collections</a>
+                <a href="#gallery" onclick="showHome()" class="text-sm font-medium text-bark-700/70 hover:text-bark-800 transition-colors">Gallery</a>
+                <a href="#visit" onclick="showHome()" class="text-sm font-medium text-bark-700/70 hover:text-bark-800 transition-colors">Visit Us</a>
+                <a href="tel:+14847888415" class="inline-flex items-center gap-2 px-5 py-2.5 bg-bark-800 text-cream-100 text-sm font-medium rounded-full hover:bg-bark-900 transition-colors">
+                    <span class="iconify text-sm" data-icon="ph:phone-fill"></span>
+                    Call Us
+                </a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button id="menuToggle" class="md:hidden w-10 h-10 flex items-center justify-center rounded-full hover:bg-cream-200 transition-colors">
+                <span class="iconify text-2xl text-bark-800" data-icon="ph:list-bold"></span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobileMenu" class="mobile-menu fixed inset-0 z-[60] bg-cream-100">
+    <div class="flex items-center justify-between h-20 px-6">
+        <div class="flex items-center gap-2">
+            <div class="w-10 h-10 rounded-full bg-rose-400 flex items-center justify-center">
+                <span class="iconify text-white text-lg" data-icon="ph:moon-stars-fill"></span>
+            </div>
+            <span class="font-serif text-2xl font-semibold text-bark-800">SonnyMoon</span>
+        </div>
+        <button id="menuClose" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-cream-200 transition-colors">
+            <span class="iconify text-2xl text-bark-800" data-icon="ph:x-bold"></span>
+        </button>
+    </div>
+    <div class="flex flex-col items-center gap-6 pt-12">
+        <a href="#about" onclick="closeMobileMenu(); showHome();" class="mobile-link font-serif text-3xl text-bark-800 hover:text-rose-500 transition-colors">Our Story</a>
+        <a href="#" onclick="closeMobileMenu(); showCollections(); return false;" class="mobile-link font-serif text-3xl text-bark-800 hover:text-rose-500 transition-colors">Collections</a>
+        <a href="#gallery" onclick="closeMobileMenu(); showHome();" class="mobile-link font-serif text-3xl text-bark-800 hover:text-rose-500 transition-colors">Gallery</a>
+        <a href="#visit" onclick="closeMobileMenu(); showHome();" class="mobile-link font-serif text-3xl text-bark-800 hover:text-rose-500 transition-colors">Visit Us</a>
+        <div class="flex gap-4 mt-8">
+            <a href="tel:+14847888415" class="inline-flex items-center gap-2 px-6 py-3 bg-bark-800 text-cream-100 font-medium rounded-full">
+                <span class="iconify" data-icon="ph:phone-fill"></span> Call
+            </a>
+            <a href="https://maps.google.com/?q=459+Main+St+Bethlehem+PA" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 bg-rose-400 text-white font-medium rounded-full">
+                <span class="iconify" data-icon="ph:map-pin-fill"></span> Directions
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<!-- ==================== HOME PAGE ==================== -->
+<div id="homePage">
+
+    <!-- ===================== HERO SECTION ===================== -->
+    <!-- SHORTCODE: [sonnymoon_hero] -->
+    <section class="relative min-h-screen flex items-center overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=1920&q=80" alt="Children playing in warm sunlight" class="w-full h-full object-cover">
+            <div class="hero-gradient absolute inset-0"></div>
+        </div>
+
+        <!-- Decorative blobs -->
+        <div class="absolute top-32 right-16 w-24 h-24 bg-honey-200/40 rounded-full blur-2xl float-anim hidden lg:block"></div>
+        <div class="absolute bottom-32 left-20 w-32 h-32 bg-rose-200/40 rounded-full blur-2xl float-anim-2 hidden lg:block"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-20 md:pt-40 md:pb-32">
+            <div class="max-w-3xl">
+                <div class="fade-in-up inline-flex items-center gap-2 px-4 py-2 bg-white/70 backdrop-blur-sm rounded-full soft-shadow mb-8">
+                    <span class="w-2 h-2 bg-sage-400 rounded-full animate-pulse"></span>
+                    <span class="text-xs font-medium text-bark-700/80 uppercase tracking-wider">Women-Owned · Bethlehem, PA</span>
+                </div>
+
+                <h1 class="fade-in-up delay-1 font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold leading-[1.1] tracking-tight text-bark-800 mb-6">
+                    Thoughtfully Curated for
+                    <span class="italic text-rose-500"> Little Moments</span>
+                    That Matter
+                </h1>
+
+                <p class="fade-in-up delay-2 text-lg md:text-xl text-bark-700/70 font-light leading-relaxed max-w-xl mb-10">
+                    Clothing, shoes, toys, and gifts designed with comfort, creativity, and care — for the ones who matter most.
+                </p>
+
+                <div class="fade-in-up delay-3 flex flex-wrap gap-4">
+                    <button onclick="showCollections()" class="inline-flex items-center gap-2 px-8 py-4 bg-bark-800 text-cream-100 font-medium rounded-full hover:bg-bark-900 hover:shadow-lg transition-all duration-300">
+                        <span class="iconify" data-icon="ph:squares-four-fill"></span>
+                        Shop Collections
+                    </button>
+                    <a href="https://maps.google.com/?q=459+Main+St+Bethlehem+PA" target="_blank" class="inline-flex items-center gap-2 px-8 py-4 bg-white/80 backdrop-blur-sm text-bark-800 font-medium rounded-full border border-bark-800/10 hover:bg-white hover:shadow-lg transition-all duration-300">
+                        <span class="iconify" data-icon="ph:map-pin-fill"></span>
+                        Get Directions
+                    </a>
+                </div>
+
+                <div class="fade-in-up delay-4 flex items-center gap-4 mt-12 pt-8 border-t border-bark-800/10">
+                    <div class="flex">
+                        <span class="iconify text-honey-400 text-lg" data-icon="ph:star-fill"></span>
+                        <span class="iconify text-honey-400 text-lg" data-icon="ph:star-fill"></span>
+                        <span class="iconify text-honey-400 text-lg" data-icon="ph:star-fill"></span>
+                        <span class="iconify text-honey-400 text-lg" data-icon="ph:star-fill"></span>
+                        <span class="iconify text-honey-400 text-lg" data-icon="ph:star-fill"></span>
+                    </div>
+                    <span class="text-sm text-bark-700/60">5.0 rating · Loved by Bethlehem families</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <span class="iconify text-2xl text-bark-700/30" data-icon="ph:caret-down"></span>
+        </div>
+    </section>
+
+
+    <!-- ===================== MARQUEE ===================== -->
+    <div class="py-5 bg-bark-800 overflow-hidden">
+        <div class="marquee-wrap">
+            <div class="marquee-track">
+                <span class="text-cream-200/50 text-sm font-medium px-6">Organic Clothing</span>
+                <span class="text-rose-400 text-sm px-2">✦</span>
+                <span class="text-cream-200/50 text-sm font-medium px-6">Educational Toys</span>
+                <span class="text-rose-400 text-sm px-2">✦</span>
+                <span class="text-cream-200/50 text-sm font-medium px-6">Beautiful Shoes</span>
+                <span class="text-rose-400 text-sm px-2">✦</span>
+                <span class="text-cream-200/50 text-sm font-medium px-6">Thoughtful Gifts</span>
+                <span class="text-rose-400 text-sm px-2">✦</span>
+                <span class="text-cream-200/50 text-sm font-medium px-6">Bethlehem Tees</span>
+                <span class="text-rose-400 text-sm px-2">✦</span>
+                <span class="text-cream-200/50 text-sm font-medium px-6">Music & Art</span>
+                <span class="text-rose-400 text-sm px-2">✦</span>
+                <span class="text-cream-200/50 text-sm font-medium px-6">Women-Owned</span>
+                <span class="text-rose-400 text-sm px-2">✦</span>
+                <span class="text-cream-200/50 text-sm font-medium px-6">Newborn – Size 14</span>
+                <span class="text-rose-400 text-sm px-2">✦</span>
+                <!-- Duplicate for seamless loop -->
+                <span class="text-cream-200/50 text-sm font-medium px-6">Organic Clothing</span>
+                <span class="text-rose-400 text-sm px-2">✦</span>
+                <span class="text-cream-200/50 text-sm font-medium px-6">Educational Toys</span>
+                <span class="text-rose-400 text-sm px-2">✦</span>
+                <span class="text-cream-200/50 text-sm font-medium px-6">Beautiful Shoes</span>
+                <span class="text-rose-400 text-sm px-2">✦</span>
+                <span class="text-cream-200/50 text-sm font-medium px-6">Thoughtful Gifts</span>
+                <span class="text-rose-400 text-sm px-2">✦</span>
+                <span class="text-cream-200/50 text-sm font-medium px-6">Bethlehem Tees</span>
+                <span class="text-rose-400 text-sm px-2">✦</span>
+                <span class="text-cream-200/50 text-sm font-medium px-6">Music & Art</span>
+                <span class="text-rose-400 text-sm px-2">✦</span>
+                <span class="text-cream-200/50 text-sm font-medium px-6">Women-Owned</span>
+                <span class="text-rose-400 text-sm px-2">✦</span>
+                <span class="text-cream-200/50 text-sm font-medium px-6">Newborn – Size 14</span>
+                <span class="text-rose-400 text-sm px-2">✦</span>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ===================== REVIEWS ===================== -->
+    <!-- SHORTCODE: [sonnymoon_reviews] -->
+    <section class="py-16 bg-white border-y border-cream-300/50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center gap-2 px-4 py-2 bg-honey-50 rounded-full mb-4">
+                    <span class="iconify text-honey-400" data-icon="ph:star-fill"></span>
+                    <span class="text-sm font-semibold text-bark-800">5.0 out of 5</span>
+                </div>
+                <p class="text-bark-700/60 text-sm">Based on reviews from our wonderful community</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="p-8 bg-cream-50 rounded-2xl soft-shadow card-hover">
+                    <div class="flex gap-0.5 mb-4">
+                        <span class="iconify text-honey-400 text-sm" data-icon="ph:star-fill"></span>
+                        <span class="iconify text-honey-400 text-sm" data-icon="ph:star-fill"></span>
+                        <span class="iconify text-honey-400 text-sm" data-icon="ph:star-fill"></span>
+                        <span class="iconify text-honey-400 text-sm" data-icon="ph:star-fill"></span>
+                        <span class="iconify text-honey-400 text-sm" data-icon="ph:star-fill"></span>
+                    </div>
+                    <p class="font-serif text-lg text-bark-800 leading-relaxed mb-4">"Price, quality, choices and service are just unbeatable."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-rose-100 flex items-center justify-center">
+                            <span class="font-serif text-rose-500 font-semibold text-sm">J</span>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-bark-800">Julia B.</p>
+                            <p class="text-xs text-bark-700/50">Bethlehem, PA</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-8 bg-cream-50 rounded-2xl soft-shadow card-hover">
+                    <div class="flex gap-0.5 mb-4">
+                        <span class="iconify text-honey-400 text-sm" data-icon="ph:star-fill"></span>
+                        <span class="iconify text-honey-400 text-sm" data-icon="ph:star-fill"></span>
+                        <span class="iconify text-honey-400 text-sm" data-icon="ph:star-fill"></span>
+                        <span class="iconify text-honey-400 text-sm" data-icon="ph:star-fill"></span>
+                        <span class="iconify text-honey-400 text-sm" data-icon="ph:star-fill"></span>
+                    </div>
+                    <p class="font-serif text-lg text-bark-800 leading-relaxed mb-4">"The owner and staff are so kind and helpful. It feels like shopping with family."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-sky-100 flex items-center justify-center">
+                            <span class="font-serif text-sky-400 font-semibold text-sm">G</span>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-bark-800">Gerri J.</p>
+                            <p class="text-xs text-bark-700/50">Lehigh Valley</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-8 bg-cream-50 rounded-2xl soft-shadow card-hover">
+                    <div class="flex gap-0.5 mb-4">
+                        <span class="iconify text-honey-400 text-sm" data-icon="ph:star-fill"></span>
+                        <span class="iconify text-honey-400 text-sm" data-icon="ph:star-fill"></span>
+                        <span class="iconify text-honey-400 text-sm" data-icon="ph:star-fill"></span>
+                        <span class="iconify text-honey-400 text-sm" data-icon="ph:star-fill"></span>
+                        <span class="iconify text-honey-400 text-sm" data-icon="ph:star-fill"></span>
+                    </div>
+                    <p class="font-serif text-lg text-bark-800 leading-relaxed mb-4">"Beautiful and charming kids store. We have especially loved the selection of shoes!"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-sage-100 flex items-center justify-center">
+                            <span class="font-serif text-sage-500 font-semibold text-sm">R</span>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-bark-800">Rebecca M.</p>
+                            <p class="text-xs text-bark-700/50">Allentown, PA</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ===================== ABOUT ===================== -->
+    <!-- SHORTCODE: [sonnymoon_about] -->
+    <section id="about" class="py-20 md:py-32 bg-cream-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <div class="relative">
+                    <div class="aspect-[4/5] rounded-3xl overflow-hidden soft-shadow">
+                        <img src="https://images.unsplash.com/photo-1560252829-804f1aedf1be?w=800&q=80" alt="Inside SonnyMoon boutique" class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute -bottom-6 -right-4 md:right-8 bg-white rounded-2xl p-5 soft-shadow float-anim">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-full bg-rose-100 flex items-center justify-center">
+                                <span class="iconify text-rose-500 text-xl" data-icon="ph:heart-fill"></span>
+                            </div>
+                            <div>
+                                <p class="font-serif text-lg font-semibold text-bark-800">Women-Owned</p>
+                                <p class="text-xs text-bark-700/50">Small Business</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute -top-4 -left-4 w-20 h-20 bg-honey-200/60 rounded-full blur-xl"></div>
+                </div>
+
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-rose-50 rounded-full mb-6">
+                        <span class="iconify text-rose-400 text-sm" data-icon="ph:sparkle-fill"></span>
+                        <span class="text-xs font-medium text-rose-500 uppercase tracking-wider">Our Story</span>
+                    </div>
+                    <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.15] tracking-tight text-bark-800 mb-6">
+                        Where Every Piece Tells a
+                        <span class="italic text-rose-500"> Story</span>
+                    </h2>
+                    <div class="space-y-5 text-bark-700/70 leading-relaxed">
+                        <p>SonnyMoon was born from a simple belief: <strong class="text-bark-800 font-medium">children deserve the very best</strong> — not just in quality, but in intention. Every item on our shelves has been handpicked with love and care.</p>
+                        <p>We source <strong class="text-bark-800 font-medium">organic materials</strong>, support ethical makers, and champion brands that prioritize sustainability. From the softest newborn layette to toys that spark real creativity.</p>
+                        <p>More than a store, we're a <strong class="text-bark-800 font-medium">community gathering place</strong> — where parents find support, children discover wonder, and every visit feels like coming home.</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 mt-8">
+                        <div class="flex items-center gap-3 p-3 bg-white/60 rounded-xl">
+                            <span class="iconify text-sage-500 text-lg" data-icon="ph:leaf-fill"></span>
+                            <span class="text-sm font-medium text-bark-800">Organic & Ethical</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 bg-white/60 rounded-xl">
+                            <span class="iconify text-honey-500 text-lg" data-icon="ph:lightbulb-fill"></span>
+                            <span class="text-sm font-medium text-bark-800">Learning & Creativity</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 bg-white/60 rounded-xl">
+                            <span class="iconify text-rose-400 text-lg" data-icon="ph:hand-heart-fill"></span>
+                            <span class="text-sm font-medium text-bark-800">Community Love</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 bg-white/60 rounded-xl">
+                            <span class="iconify text-sky-400 text-lg" data-icon="ph:handshake-fill"></span>
+                            <span class="text-sm font-medium text-bark-800">Curated with Care</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ===================== COLLECTION PREVIEW (Homepage) ===================== -->
+    <!-- SHORTCODE: [sonnymoon_collection_preview] -->
+    <section id="products" class="py-20 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-honey-50 rounded-full mb-6">
+                    <span class="iconify text-honey-400 text-sm" data-icon="ph:squares-four-fill"></span>
+                    <span class="text-xs font-medium text-honey-500 uppercase tracking-wider">Our Collections</span>
+                </div>
+                <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.15] tracking-tight text-bark-800 mb-4">
+                    Carefully Chosen for
+                    <span class="italic text-rose-500"> Every Stage</span>
+                </h2>
+                <p class="text-bark-700/60 text-lg font-light">From first outfits to forever favorites — each collection is curated with intention and love.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Clothing -->
+                <div class="product-card group bg-cream-50 rounded-2xl overflow-hidden soft-shadow card-hover cursor-pointer" onclick="showCollections('clothing')">
+                    <div class="aspect-[3/4] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1471286174890-9c112ffca5b4?w=600&q=80" alt="Children's clothing" class="product-img w-full h-full object-cover transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-rose-100 rounded-full mb-3">
+                            <span class="iconify text-rose-400 text-xs" data-icon="ph:t-shirt-fill"></span>
+                            <span class="text-[10px] font-semibold text-rose-500 uppercase tracking-wider">Newborn – Size 14</span>
+                        </div>
+                        <h3 class="font-serif text-xl font-semibold text-bark-800 mb-2">Clothing</h3>
+                        <p class="text-sm text-bark-700/60 leading-relaxed">Soft, breathable pieces that let kids be kids — beautifully made for every adventure.</p>
+                    </div>
+                </div>
+
+                <!-- Shoes -->
+                <div class="product-card group bg-cream-50 rounded-2xl overflow-hidden soft-shadow card-hover cursor-pointer" onclick="showCollections('shoes')">
+                    <div class="aspect-[3/4] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1596870230751-ebdfce98ec42?w=600&q=80" alt="Children's shoes" class="product-img w-full h-full object-cover transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-sky-100 rounded-full mb-3">
+                            <span class="iconify text-sky-400 text-xs" data-icon="ph:sneaker-fill"></span>
+                            <span class="text-[10px] font-semibold text-sky-500 uppercase tracking-wider">First Steps & Beyond</span>
+                        </div>
+                        <h3 class="font-serif text-xl font-semibold text-bark-800 mb-2">Shoes</h3>
+                        <p class="text-sm text-bark-700/60 leading-relaxed">Gentle support for growing feet with flexible soles and natural materials.</p>
+                    </div>
+                </div>
+
+                <!-- Toys & Books -->
+                <div class="product-card group bg-cream-50 rounded-2xl overflow-hidden soft-shadow card-hover cursor-pointer" onclick="showCollections('toys')">
+                    <div class="aspect-[3/4] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=600&q=80" alt="Toys and books" class="product-img w-full h-full object-cover transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-honey-100 rounded-full mb-3">
+                            <span class="iconify text-honey-400 text-xs" data-icon="ph:puzzle-piece-fill"></span>
+                            <span class="text-[10px] font-semibold text-honey-500 uppercase tracking-wider">Play & Learn</span>
+                        </div>
+                        <h3 class="font-serif text-xl font-semibold text-bark-800 mb-2">Toys & Books</h3>
+                        <p class="text-sm text-bark-700/60 leading-relaxed">Toys that spark imagination and books that open worlds.</p>
+                    </div>
+                </div>
+
+                <!-- Gifts & Art -->
+                <div class="product-card group bg-cream-50 rounded-2xl overflow-hidden soft-shadow card-hover cursor-pointer" onclick="showCollections('gifts')">
+                    <div class="aspect-[3/4] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?w=600&q=80" alt="Gifts and art" class="product-img w-full h-full object-cover transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-sage-100 rounded-full mb-3">
+                            <span class="iconify text-sage-500 text-xs" data-icon="ph:gift-fill"></span>
+                            <span class="text-[10px] font-semibold text-sage-500 uppercase tracking-wider">Meaningful Gifts</span>
+                        </div>
+                        <h3 class="font-serif text-xl font-semibold text-bark-800 mb-2">Gifts & Art</h3>
+                        <p class="text-sm text-bark-700/60 leading-relaxed">Gifts worth giving and art supplies that unleash creativity.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <button onclick="showCollections()" class="inline-flex items-center gap-2 px-8 py-4 bg-bark-800 text-cream-100 font-medium rounded-full hover:bg-bark-900 transition-colors">
+                    <span class="iconify" data-icon="ph:squares-four-fill"></span>
+                    View All Products
+                </button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ===================== WHY CHOOSE US ===================== -->
+    <!-- SHORTCODE: [sonnymoon_features] -->
+    <section class="py-20 md:py-32 bg-cream-100 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-64 h-64 bg-rose-100/40 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+        <div class="absolute bottom-0 right-0 w-72 h-72 bg-honey-100/40 rounded-full blur-3xl translate-x-1/3 translate-y-1/3"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-rose-50 rounded-full mb-6">
+                    <span class="iconify text-rose-400 text-sm" data-icon="ph:heart-fill"></span>
+                    <span class="text-xs font-medium text-rose-500 uppercase tracking-wider">Why Families Choose Us</span>
+                </div>
+                <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.15] tracking-tight text-bark-800 mb-4">
+                    More Than a Store —
+                    <span class="italic text-rose-500"> A Standard</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white/70 backdrop-blur-sm rounded-2xl p-8 md:p-10 soft-shadow card-hover">
+                    <div class="w-14 h-14 rounded-2xl bg-sage-100 flex items-center justify-center mb-6">
+                        <span class="iconify text-sage-500 text-2xl" data-icon="ph:leaf-fill"></span>
+                    </div>
+                    <h3 class="font-serif text-xl font-semibold text-bark-800 mb-3">Ethically Sourced Products</h3>
+                    <p class="text-bark-700/60 leading-relaxed">Every brand we carry shares our commitment to fair labor, safe materials, and sustainable practices.</p>
+                </div>
+                <div class="bg-white/70 backdrop-blur-sm rounded-2xl p-8 md:p-10 soft-shadow card-hover">
+                    <div class="w-14 h-14 rounded-2xl bg-honey-100 flex items-center justify-center mb-6">
+                        <span class="iconify text-honey-500 text-2xl" data-icon="ph:diamond-fill"></span>
+                    </div>
+                    <h3 class="font-serif text-xl font-semibold text-bark-800 mb-3">Unique Items You Won't Find Elsewhere</h3>
+                    <p class="text-bark-700/60 leading-relaxed">We handpick from independent makers and small brands around the world.</p>
+                </div>
+                <div class="bg-white/70 backdrop-blur-sm rounded-2xl p-8 md:p-10 soft-shadow card-hover">
+                    <div class="w-14 h-14 rounded-2xl bg-rose-100 flex items-center justify-center mb-6">
+                        <span class="iconify text-rose-400 text-2xl" data-icon="ph:chat-circle-heart-fill"></span>
+                    </div>
+                    <h3 class="font-serif text-xl font-semibold text-bark-800 mb-3">Friendly, Personal Experience</h3>
+                    <p class="text-bark-700/60 leading-relaxed">Our team is here to help you find the perfect piece, every time you visit.</p>
+                </div>
+                <div class="bg-white/70 backdrop-blur-sm rounded-2xl p-8 md:p-10 soft-shadow card-hover">
+                    <div class="w-14 h-14 rounded-2xl bg-sky-100 flex items-center justify-center mb-6">
+                        <span class="iconify text-sky-400 text-2xl" data-icon="ph:users-three-fill"></span>
+                    </div>
+                    <h3 class="font-serif text-xl font-semibold text-bark-800 mb-3">Community-Focused</h3>
+                    <p class="text-bark-700/60 leading-relaxed">From local events to supporting Bethlehem families, SonnyMoon exists to uplift the community.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ===================== GALLERY ===================== -->
+    <!-- SHORTCODE: [sonnymoon_gallery] -->
+    <section id="gallery" class="py-20 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-sky-50 rounded-full mb-6">
+                    <span class="iconify text-sky-400 text-sm" data-icon="ph:instagram-logo-fill"></span>
+                    <span class="text-xs font-medium text-sky-500 uppercase tracking-wider">@sonnymoonbethlehem</span>
+                </div>
+                <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.15] tracking-tight text-bark-800 mb-4">
+                    Moments from
+                    <span class="italic text-rose-500"> Our World</span>
+                </h2>
+                <p class="text-bark-700/60 text-lg font-light">Real smiles, real products, real life. Follow along for daily inspiration.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
+                <div class="gallery-item aspect-square rounded-2xl overflow-hidden cursor-pointer relative group">
+                    <img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&q=80" alt="SonnyMoon" class="gallery-img w-full h-full object-cover transition-transform duration-500">
+                    <div class="absolute inset-0 bg-bark-800/0 group-hover:bg-bark-800/20 transition-colors flex items-center justify-center">
+                        <span class="iconify text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity" data-icon="ph:heart-fill"></span>
+                    </div>
+                </div>
+                <div class="gallery-item aspect-square rounded-2xl overflow-hidden cursor-pointer relative group">
+                    <img src="https://images.unsplash.com/photo-1596870230751-ebdfce98ec42?w=400&q=80" alt="SonnyMoon" class="gallery-img w-full h-full object-cover transition-transform duration-500">
+                    <div class="absolute inset-0 bg-bark-800/0 group-hover:bg-bark-800/20 transition-colors flex items-center justify-center">
+                        <span class="iconify text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity" data-icon="ph:heart-fill"></span>
+                    </div>
+                </div>
+                <div class="gallery-item aspect-square rounded-2xl overflow-hidden cursor-pointer relative group">
+                    <img src="https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=400&q=80" alt="SonnyMoon" class="gallery-img w-full h-full object-cover transition-transform duration-500">
+                    <div class="absolute inset-0 bg-bark-800/0 group-hover:bg-bark-800/20 transition-colors flex items-center justify-center">
+                        <span class="iconify text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity" data-icon="ph:heart-fill"></span>
+                    </div>
+                </div>
+                <div class="gallery-item aspect-square rounded-2xl overflow-hidden cursor-pointer relative group">
+                    <img src="https://images.unsplash.com/photo-1471286174890-9c112ffca5b4?w=400&q=80" alt="SonnyMoon" class="gallery-img w-full h-full object-cover transition-transform duration-500">
+                    <div class="absolute inset-0 bg-bark-800/0 group-hover:bg-bark-800/20 transition-colors flex items-center justify-center">
+                        <span class="iconify text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity" data-icon="ph:heart-fill"></span>
+                    </div>
+                </div>
+                <div class="gallery-item aspect-square rounded-2xl overflow-hidden cursor-pointer relative group">
+                    <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=400&q=80" alt="SonnyMoon" class="gallery-img w-full h-full object-cover transition-transform duration-500">
+                    <div class="absolute inset-0 bg-bark-800/0 group-hover:bg-bark-800/20 transition-colors flex items-center justify-center">
+                        <span class="iconify text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity" data-icon="ph:heart-fill"></span>
+                    </div>
+                </div>
+                <div class="gallery-item aspect-square rounded-2xl overflow-hidden cursor-pointer relative group">
+                    <img src="https://images.unsplash.com/photo-1567113463300-102a7eb3cb26?w=400&q=80" alt="SonnyMoon" class="gallery-img w-full h-full object-cover transition-transform duration-500">
+                    <div class="absolute inset-0 bg-bark-800/0 group-hover:bg-bark-800/20 transition-colors flex items-center justify-center">
+                        <span class="iconify text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity" data-icon="ph:heart-fill"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-10">
+                <a href="https://www.instagram.com/sonnymoonbethlehem/" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white font-medium rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300">
+                    <span class="iconify text-lg" data-icon="ph:instagram-logo-fill"></span>
+                    Follow Us on Instagram
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ===================== VISIT / LOCATION ===================== -->
+    <!-- SHORTCODE: [sonnymoon_location] -->
+    <section id="visit" class="py-20 md:py-32 bg-cream-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-sage-50 rounded-full mb-6">
+                        <span class="iconify text-sage-500 text-sm" data-icon="ph:map-pin-fill"></span>
+                        <span class="text-xs font-medium text-sage-500 uppercase tracking-wider">Find Us</span>
+                    </div>
+                    <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.15] tracking-tight text-bark-800 mb-6">
+                        Come Say
+                        <span class="italic text-rose-500"> Hello</span>
+                    </h2>
+                    <p class="text-bark-700/60 text-lg font-light leading-relaxed mb-10">We'd love to welcome you and your little ones. Stop by, explore our collections, and experience the warmth of SonnyMoon in person.</p>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4 p-5 bg-white/70 backdrop-blur-sm rounded-2xl soft-shadow">
+                            <div class="w-12 h-12 rounded-xl bg-rose-100 flex items-center justify-center flex-shrink-0">
+                                <span class="iconify text-rose-400 text-xl" data-icon="ph:map-pin-fill"></span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-bark-800 mb-1">Address</h4>
+                                <p class="text-bark-700/60 text-sm">459 Main St, Bethlehem, PA 18018</p>
+                                <a href="https://maps.google.com/?q=459+Main+St+Bethlehem+PA" target="_blank" class="inline-flex items-center gap-1 text-sm font-medium text-rose-500 hover:text-rose-600 mt-1">
+                                    Get Directions <span class="iconify text-xs" data-icon="ph:arrow-up-right-bold"></span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4 p-5 bg-white/70 backdrop-blur-sm rounded-2xl soft-shadow">
+                            <div class="w-12 h-12 rounded-xl bg-honey-100 flex items-center justify-center flex-shrink-0">
+                                <span class="iconify text-honey-500 text-xl" data-icon="ph:clock-fill"></span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-bark-800 mb-1">Store Hours</h4>
+                                <div class="text-sm text-bark-700/60 space-y-0.5">
+                                    <p>Mon – Tue: 10AM – 6PM</p>
+                                    <p>Wed – Sun: 10AM – 7PM</p>
+                                </div>
+                                <div id="openStatus" class="inline-flex items-center gap-1.5 mt-2"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4 p-5 bg-white/70 backdrop-blur-sm rounded-2xl soft-shadow">
+                            <div class="w-12 h-12 rounded-xl bg-sage-100 flex items-center justify-center flex-shrink-0">
+                                <span class="iconify text-sage-500 text-xl" data-icon="ph:phone-fill"></span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-bark-800 mb-1">Phone</h4>
+                                <a href="tel:+14847888415" class="text-bark-700/60 text-sm hover:text-rose-500 transition-colors">+1 (484) 788-8415</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4 p-5 bg-white/70 backdrop-blur-sm rounded-2xl soft-shadow">
+                            <div class="w-12 h-12 rounded-xl bg-sky-100 flex items-center justify-center flex-shrink-0">
+                                <span class="iconify text-sky-400 text-xl" data-icon="ph:share-network-fill"></span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-bark-800 mb-2">Follow Us</h4>
+                                <div class="flex gap-3">
+                                    <a href="https://www.instagram.com/sonnymoonbethlehem/" target="_blank" class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 flex items-center justify-center hover:scale-110 transition-transform">
+                                        <span class="iconify text-white text-lg" data-icon="ph:instagram-logo-fill"></span>
+                                    </a>
+                                    <a href="https://web.facebook.com/p/SonnyMoon-61566438214204/" target="_blank" class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center hover:scale-110 transition-transform">
+                                        <span class="iconify text-white text-lg" data-icon="ph:facebook-logo-fill"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <div class="rounded-3xl overflow-hidden soft-shadow h-full min-h-[400px] lg:min-h-[600px]">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3029.1!2d-75.3788!3d40.6259!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c4c1c3c1c1c1c1%3A0x1c1c1c1c1c1c1c1c!2s459%20Main%20St%2C%20Bethlehem%2C%20PA%2018018!5e0!3m2!1sen!2sus!4v1700000000000" width="100%" height="100%" style="border:0; min-height: 400px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="SonnyMoon location"></iframe>
+                    </div>
+                    <div class="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-md rounded-2xl p-5 soft-shadow">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="font-serif font-semibold text-bark-800">SonnyMoon</p>
+                                <p class="text-xs text-bark-700/50">459 Main St, Bethlehem, PA</p>
+                            </div>
+                            <a href="https://maps.google.com/?q=459+Main+St+Bethlehem+PA" target="_blank" class="inline-flex items-center gap-1 px-4 py-2 bg-bark-800 text-cream-100 text-sm font-medium rounded-full hover:bg-bark-900 transition-colors">
+                                <span class="iconify text-sm" data-icon="ph:navigation-arrow-fill"></span>
+                                Go
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ===================== FINAL CTA ===================== -->
+    <!-- SHORTCODE: [sonnymoon_cta] -->
+    <section class="py-20 md:py-32 bg-bark-800 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-rose-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-72 h-72 bg-honey-500/10 rounded-full blur-3xl"></div>
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full mb-8">
+                <span class="iconify text-rose-400 text-sm" data-icon="ph:moon-stars-fill"></span>
+                <span class="text-xs font-medium text-cream-200 uppercase tracking-wider">Visit SonnyMoon Today</span>
+            </div>
+            <h2 class="font-serif text-3xl md:text-5xl lg:text-6xl font-semibold leading-[1.1] tracking-tight text-cream-100 mb-6">
+                Your Little One Deserves
+                <span class="italic text-rose-400"> the Best</span>
+            </h2>
+            <p class="text-lg md:text-xl text-cream-200/60 font-light leading-relaxed max-w-2xl mx-auto mb-10">
+                Come discover clothing, toys, and gifts made with love. We can't wait to welcome you and your family to SonnyMoon.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="tel:+14847888415" class="inline-flex items-center gap-2 px-8 py-4 bg-white text-bark-800 font-medium rounded-full hover:bg-cream-100 hover:shadow-lg transition-all duration-300">
+                    <span class="iconify" data-icon="ph:phone-fill"></span>
+                    Call (484) 788-8415
+                </a>
+                <a href="https://maps.google.com/?q=459+Main+St+Bethlehem+PA" target="_blank" class="inline-flex items-center gap-2 px-8 py-4 bg-rose-500 text-white font-medium rounded-full hover:bg-rose-600 hover:shadow-lg transition-all duration-300">
+                    <span class="iconify" data-icon="ph:map-pin-fill"></span>
+                    Get Directions
+                </a>
+            </div>
+            <div class="mt-10 pt-8 border-t border-white/10">
+                <p class="text-cream-200/40 text-sm">Open Mon–Tue 10AM–6PM · Wed–Sun 10AM–7PM · 459 Main St, Bethlehem, PA</p>
+            </div>
+        </div>
+    </section>
+
+</div><!-- end #homePage -->
+
+
+<!-- ==================== COLLECTIONS PAGE ==================== -->
+<!-- SHORTCODE: [sonnymoon_collections_page] -->
+<div id="collectionsPage">
+
+    <!-- Collections Page Hero -->
+    <section class="pt-28 pb-10 bg-cream-100 border-b border-cream-300">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-center gap-2 text-sm text-bark-700/50 mb-4">
+                <button onclick="showHome()" class="hover:text-rose-500 transition-colors">Home</button>
+                <span class="iconify text-xs" data-icon="ph:caret-right"></span>
+                <span class="text-bark-800 font-medium">Collections</span>
+            </div>
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <h1 class="font-serif text-4xl md:text-5xl font-semibold text-bark-800 mb-2">
+                        Our <span class="italic text-rose-500">Collections</span>
+                    </h1>
+                    <p class="text-bark-700/60 font-light">Thoughtfully curated for every stage of childhood.</p>
+                </div>
+                <!-- Mobile filter toggle -->
+                <button id="filterToggle" onclick="toggleFilterPanel()" class="md:hidden inline-flex items-center gap-2 px-4 py-2.5 bg-white border border-cream-300 rounded-xl text-sm font-medium text-bark-800">
+                    <span class="iconify" data-icon="ph:funnel-fill"></span>
+                    Filter by Collection
+                </button>
+            </div>
+
+            <!-- Top filter bar (desktop) / Mobile panel -->
+            <div id="filterBar" class="mt-8 flex flex-wrap gap-2 hidden md:flex">
+                <button class="collection-btn active" data-collection="all" onclick="filterCollection('all', this)">All Products</button>
+                <button class="collection-btn" data-collection="clothing" onclick="filterCollection('clothing', this)">👕 Clothing</button>
+                <button class="collection-btn" data-collection="shoes" onclick="filterCollection('shoes', this)">👟 Shoes</button>
+                <button class="collection-btn" data-collection="toys" onclick="filterCollection('toys', this)">🧩 Toys & Books</button>
+                <button class="collection-btn" data-collection="gifts" onclick="filterCollection('gifts', this)">🎁 Gifts & Art</button>
+                <button class="collection-btn" data-collection="bethlehem" onclick="filterCollection('bethlehem', this)">🏙️ Bethlehem Tees</button>
+            </div>
+
+            <!-- Mobile filter panel -->
+            <div id="mobileFilterPanel" class="mt-4 p-4 bg-white rounded-2xl soft-shadow hidden md:hidden">
+                <div class="flex flex-wrap gap-2">
+                    <button class="collection-btn active" data-collection="all" onclick="filterCollection('all', this)">All Products</button>
+                    <button class="collection-btn" data-collection="clothing" onclick="filterCollection('clothing', this)">👕 Clothing</button>
+                    <button class="collection-btn" data-collection="shoes" onclick="filterCollection('shoes', this)">👟 Shoes</button>
+                    <button class="collection-btn" data-collection="toys" onclick="filterCollection('toys', this)">🧩 Toys & Books</button>
+                    <button class="collection-btn" data-collection="gifts" onclick="filterCollection('gifts', this)">🎁 Gifts & Art</button>
+                    <button class="collection-btn" data-collection="bethlehem" onclick="filterCollection('bethlehem', this)">🏙️ Bethlehem Tees</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collections Grid -->
+    <section class="py-10 pb-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex gap-8">
+
+                <!-- Sidebar (desktop) -->
+                <aside class="hidden lg:block w-56 flex-shrink-0">
+                    <div class="coll-sidebar">
+                        <p class="text-xs font-semibold text-bark-700/40 uppercase tracking-widest mb-4">Collections</p>
+                        <div class="space-y-1">
+                            <button class="collection-btn active w-full text-left" data-collection="all" onclick="filterCollection('all', this)">All Products</button>
+                            <button class="collection-btn w-full text-left" data-collection="clothing" onclick="filterCollection('clothing', this)">👕 Clothing</button>
+                            <button class="collection-btn w-full text-left" data-collection="shoes" onclick="filterCollection('shoes', this)">👟 Shoes</button>
+                            <button class="collection-btn w-full text-left" data-collection="toys" onclick="filterCollection('toys', this)">🧩 Toys & Books</button>
+                            <button class="collection-btn w-full text-left" data-collection="gifts" onclick="filterCollection('gifts', this)">🎁 Gifts & Art</button>
+                            <button class="collection-btn w-full text-left" data-collection="bethlehem" onclick="filterCollection('bethlehem', this)">🏙️ Bethlehem Tees</button>
+                        </div>
+
+                        <div class="mt-8 p-4 bg-cream-100 rounded-2xl">
+                            <p class="font-serif text-sm font-semibold text-bark-800 mb-1">Store Hours</p>
+                            <p class="text-xs text-bark-700/60">Mon–Tue: 10AM–6PM</p>
+                            <p class="text-xs text-bark-700/60">Wed–Sun: 10AM–7PM</p>
+                            <a href="tel:+14847888415" class="mt-3 inline-flex items-center gap-1 text-xs font-medium text-rose-500">
+                                <span class="iconify text-xs" data-icon="ph:phone-fill"></span>
+                                (484) 788-8415
+                            </a>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Products Grid -->
+                <div class="flex-1">
+                    <div id="productsGrid" class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+
+                        <!-- CLOTHING PRODUCTS -->
+                        <div class="prod-item show" data-category="clothing">
+                            <div class="bg-cream-50 rounded-2xl overflow-hidden soft-shadow card-hover cursor-pointer group" onclick="openProduct({id:1, name:'Organic Cotton Romper', category:'Clothing', price:'$38', description:'Ultra-soft organic cotton romper perfect for little ones. Features snap buttons at the bottom for easy diaper changes. GOTS certified, gentle on sensitive skin.', image:'https://images.unsplash.com/photo-1471286174890-9c112ffca5b4?w=600&q=80', colors:['#F9C5D1','#B5D5C5','#F5E6D0'], sizes:['NB','3M','6M','12M','18M','24M'], badge:'Organic'})">
+                                <div class="aspect-[3/4] overflow-hidden relative">
+                                    <img src="https://images.unsplash.com/photo-1471286174890-9c112ffca5b4?w=400&q=80" class="product-img w-full h-full object-cover transition-transform duration-500" alt="Organic Cotton Romper">
+                                    <div class="absolute top-3 left-3"><span class="text-[10px] font-bold bg-sage-400 text-white px-2 py-1 rounded-full">Organic</span></div>
+                                </div>
+                                <div class="p-4">
+                                    <p class="text-[10px] font-medium text-rose-400 uppercase tracking-wider mb-1">Clothing</p>
+                                    <h3 class="font-serif text-base font-semibold text-bark-800 mb-1 leading-snug">Organic Cotton Romper</h3>
+                                    <p class="text-sm font-semibold text-bark-800">$38</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="prod-item show" data-category="clothing">
+                            <div class="bg-cream-50 rounded-2xl overflow-hidden soft-shadow card-hover cursor-pointer group" onclick="openProduct({id:2, name:'Reversible Corduroy Dress', category:'Clothing', price:'$65', description:'Beautiful reversible dress — one side is rich blue corduroy, the other a charming checkered flannel. All organic cotton. Fits sizes 2T–8Y.', image:'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=600&q=80', colors:['#5B7DB1','#D4A574','#8B5E5E'], sizes:['2T','3T','4T','5Y','6Y','7Y','8Y'], badge:'New'})">
+                                <div class="aspect-[3/4] overflow-hidden relative">
+                                    <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=400&q=80" class="product-img w-full h-full object-cover transition-transform duration-500" alt="Reversible Dress">
+                                    <div class="absolute top-3 left-3"><span class="text-[10px] font-bold bg-rose-400 text-white px-2 py-1 rounded-full">New</span></div>
+                                </div>
+                                <div class="p-4">
+                                    <p class="text-[10px] font-medium text-rose-400 uppercase tracking-wider mb-1">Clothing</p>
+                                    <h3 class="font-serif text-base font-semibold text-bark-800 mb-1 leading-snug">Reversible Corduroy Dress</h3>
+                                    <p class="text-sm font-semibold text-bark-800">$65</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="prod-item show" data-category="clothing">
+                            <div class="bg-cream-50 rounded-2xl overflow-hidden soft-shadow card-hover cursor-pointer group" onclick="openProduct({id:3, name:'Striped Knit Sweater', category:'Clothing', price:'$48', description:'Classic striped knit sweater in soft merino wool blend. Perfect for layering on cool days. Machine washable. Available in pink/cream and blue/cream.', image:'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=600&q=80', colors:['#F9C5D1','#BAE6FD','#FEF3C7'], sizes:['12M','18M','24M','3T','4T','5Y','6Y'], badge:null})">
+                                <div class="aspect-[3/4] overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&q=80" class="product-img w-full h-full object-cover transition-transform duration-500" alt="Striped Sweater">
+                                </div>
+                                <div class="p-4">
+                                    <p class="text-[10px] font-medium text-rose-400 uppercase tracking-wider mb-1">Clothing</p>
+                                    <h3 class="font-serif text-base font-semibold text-bark-800 mb-1 leading-snug">Striped Knit Sweater</h3>
+                                    <p class="text-sm font-semibold text-bark-800">$48</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SHOES PRODUCTS -->
+                        <div class="prod-item show" data-category="shoes">
+                            <div class="bg-cream-50 rounded-2xl overflow-hidden soft-shadow card-hover cursor-pointer group" onclick="openProduct({id:4, name:'Leather Soft Sole Boots', category:'Shoes', price:'$55', description:'Handcrafted leather boots with flexible soft soles, ideal for first walkers. Features a side zipper for easy on and off. Genuine leather uppers, non-slip sole.', image:'https://images.unsplash.com/photo-1596870230751-ebdfce98ec42?w=600&q=80', colors:['#8B5E5E','#3D2C2C','#D4A574'], sizes:['0-6M','6-12M','12-18M','18-24M','2T','3T'], badge:'Bestseller'})">
+                                <div class="aspect-[3/4] overflow-hidden relative">
+                                    <img src="https://images.unsplash.com/photo-1596870230751-ebdfce98ec42?w=400&q=80" class="product-img w-full h-full object-cover transition-transform duration-500" alt="Leather Boots">
+                                    <div class="absolute top-3 left-3"><span class="text-[10px] font-bold bg-honey-400 text-bark-800 px-2 py-1 rounded-full">Bestseller</span></div>
+                                </div>
+                                <div class="p-4">
+                                    <p class="text-[10px] font-medium text-sky-400 uppercase tracking-wider mb-1">Shoes</p>
+                                    <h3 class="font-serif text-base font-semibold text-bark-800 mb-1 leading-snug">Leather Soft Sole Boots</h3>
+                                    <p class="text-sm font-semibold text-bark-800">$55</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="prod-item show" data-category="shoes">
+                            <div class="bg-cream-50 rounded-2xl overflow-hidden soft-shadow card-hover cursor-pointer group" onclick="openProduct({id:5, name:'Canvas Sneakers', category:'Shoes', price:'$42', description:'Classic canvas sneakers with a flexible rubber sole. Breathable, lightweight and easy to clean. Features a velcro closure for little ones learning to dress themselves.', image:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&q=80', colors:['#F9C5D1','#BAE6FD','#FEF3C7','#B5D5C5'], sizes:['5T','6T','7T','8T','9T','10T','11T','12T'], badge:null})">
+                                <div class="aspect-[3/4] overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&q=80" class="product-img w-full h-full object-cover transition-transform duration-500" alt="Canvas Sneakers">
+                                </div>
+                                <div class="p-4">
+                                    <p class="text-[10px] font-medium text-sky-400 uppercase tracking-wider mb-1">Shoes</p>
+                                    <h3 class="font-serif text-base font-semibold text-bark-800 mb-1 leading-snug">Canvas Sneakers</h3>
+                                    <p class="text-sm font-semibold text-bark-800">$42</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TOYS & BOOKS PRODUCTS -->
+                        <div class="prod-item show" data-category="toys">
+                            <div class="bg-cream-50 rounded-2xl overflow-hidden soft-shadow card-hover cursor-pointer group" onclick="openProduct({id:6, name:'Fairy Snow Globe', category:'Toys & Books', price:'$28', description:'Magical fairy snow globe that enchants children of all ages. Features a beautiful fairy scene inside. Shake to see the snow swirl! A perfect gift for any occasion.', image:'https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=600&q=80', colors:[], sizes:[], badge:'Popular'})">
+                                <div class="aspect-[3/4] overflow-hidden relative">
+                                    <img src="https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=400&q=80" class="product-img w-full h-full object-cover transition-transform duration-500" alt="Snow Globe">
+                                    <div class="absolute top-3 left-3"><span class="text-[10px] font-bold bg-sky-300 text-bark-800 px-2 py-1 rounded-full">Popular</span></div>
+                                </div>
+                                <div class="p-4">
+                                    <p class="text-[10px] font-medium text-honey-500 uppercase tracking-wider mb-1">Toys & Books</p>
+                                    <h3 class="font-serif text-base font-semibold text-bark-800 mb-1 leading-snug">Fairy Snow Globe</h3>
+                                    <p class="text-sm font-semibold text-bark-800">$28</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="prod-item show" data-category="toys">
+                            <div class="bg-cream-50 rounded-2xl overflow-hidden soft-shadow card-hover cursor-pointer group" onclick="openProduct({id:7, name:'Wooden Rocket Toy Set', category:'Toys & Books', price:'$45', description:'Beautifully crafted wooden rocket toy set made from sustainable maple wood. Includes rocket, astronaut figurine, and moon base. Safe non-toxic paints. Ages 3+.', image:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80', colors:[], sizes:[], badge:'Eco'})">
+                                <div class="aspect-[3/4] overflow-hidden relative">
+                                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" class="product-img w-full h-full object-cover transition-transform duration-500" alt="Wooden Toy">
+                                    <div class="absolute top-3 left-3"><span class="text-[10px] font-bold bg-sage-400 text-white px-2 py-1 rounded-full">Eco</span></div>
+                                </div>
+                                <div class="p-4">
+                                    <p class="text-[10px] font-medium text-honey-500 uppercase tracking-wider mb-1">Toys & Books</p>
+                                    <h3 class="font-serif text-base font-semibold text-bark-800 mb-1 leading-snug">Wooden Rocket Toy Set</h3>
+                                    <p class="text-sm font-semibold text-bark-800">$45</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="prod-item show" data-category="toys">
+                            <div class="bg-cream-50 rounded-2xl overflow-hidden soft-shadow card-hover cursor-pointer group" onclick="openProduct({id:8, name:'Touch The Earth Book', category:'Toys & Books', price:'$19', description:'A gorgeous picture book by Julian Lennon that takes children on a journey around the earth. Beautifully illustrated with a powerful eco-friendly message. Ages 4–8.', image:'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=600&q=80', colors:[], sizes:[], badge:null})">
+                                <div class="aspect-[3/4] overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&q=80" class="product-img w-full h-full object-cover transition-transform duration-500" alt="Children's Book">
+                                </div>
+                                <div class="p-4">
+                                    <p class="text-[10px] font-medium text-honey-500 uppercase tracking-wider mb-1">Toys & Books</p>
+                                    <h3 class="font-serif text-base font-semibold text-bark-800 mb-1 leading-snug">Touch The Earth Book</h3>
+                                    <p class="text-sm font-semibold text-bark-800">$19</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- GIFTS & ART -->
+                        <div class="prod-item show" data-category="gifts">
+                            <div class="bg-cream-50 rounded-2xl overflow-hidden soft-shadow card-hover cursor-pointer group" onclick="openProduct({id:9, name:'Watercolor Paint Set', category:'Gifts & Art', price:'$32', description:'Premium children\'s watercolor set with 24 vibrant colors, 3 brushes, and a mixing palette. Non-toxic, washable paints in reusable tin. Perfect starter set for young artists.', image:'https://images.unsplash.com/photo-1513201099705-a9746e1e201f?w=600&q=80', colors:[], sizes:[], badge:'Gift Idea'})">
+                                <div class="aspect-[3/4] overflow-hidden relative">
+                                    <img src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?w=400&q=80" class="product-img w-full h-full object-cover transition-transform duration-500" alt="Watercolor Set">
+                                    <div class="absolute top-3 left-3"><span class="text-[10px] font-bold bg-rose-300 text-white px-2 py-1 rounded-full">Gift Idea</span></div>
+                                </div>
+                                <div class="p-4">
+                                    <p class="text-[10px] font-medium text-sage-500 uppercase tracking-wider mb-1">Gifts & Art</p>
+                                    <h3 class="font-serif text-base font-semibold text-bark-800 mb-1 leading-snug">Watercolor Paint Set</h3>
+                                    <p class="text-sm font-semibold text-bark-800">$32</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="prod-item show" data-category="gifts">
+                            <div class="bg-cream-50 rounded-2xl overflow-hidden soft-shadow card-hover cursor-pointer group" onclick="openProduct({id:10, name:'Musical Chime Toy', category:'Gifts & Art', price:'$36', description:'Beautifully crafted wooden chime toy that produces gentle, melodic tones. Perfect for developing auditory senses and musical appreciation. Suitable from birth.', image:'https://images.unsplash.com/photo-1559181567-c3190b2f636b?w=600&q=80', colors:['#F5E6D0','#B5D5C5','#F9C5D1'], sizes:[], badge:'0+'})">
+                                <div class="aspect-[3/4] overflow-hidden relative">
+                                    <img src="https://images.unsplash.com/photo-1559181567-c3190b2f636b?w=400&q=80" class="product-img w-full h-full object-cover transition-transform duration-500" alt="Chime Toy">
+                                    <div class="absolute top-3 left-3"><span class="text-[10px] font-bold bg-honey-300 text-bark-800 px-2 py-1 rounded-full">0+</span></div>
+                                </div>
+                                <div class="p-4">
+                                    <p class="text-[10px] font-medium text-sage-500 uppercase tracking-wider mb-1">Gifts & Art</p>
+                                    <h3 class="font-serif text-base font-semibold text-bark-800 mb-1 leading-snug">Musical Chime Toy</h3>
+                                    <p class="text-sm font-semibold text-bark-800">$36</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- BETHLEHEM TEES -->
+                        <div class="prod-item show" data-category="bethlehem">
+                            <div class="bg-cream-50 rounded-2xl overflow-hidden soft-shadow card-hover cursor-pointer group" onclick="openProduct({id:11, name:'Bethlehem Kids Tee', category:'Bethlehem Tees', price:'$24', description:'Celebrate hometown pride in style! Soft cotton tee featuring the Bethlehem skyline. Available for kids in multiple colors. 100% ring-spun cotton, pre-shrunk.', image:'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600&q=80', colors:['#2D1F1F','#E88FA3','#4ADE80','#38BDF8'], sizes:['2T','3T','4T','5Y','6Y','7Y','8Y','10Y','12Y','14Y'], badge:'Local Pride'})">
+                                <div class="aspect-[3/4] overflow-hidden relative">
+                                    <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400&q=80" class="product-img w-full h-full object-cover transition-transform duration-500" alt="Bethlehem Tee">
+                                    <div class="absolute top-3 left-3"><span class="text-[10px] font-bold bg-bark-700 text-cream-100 px-2 py-1 rounded-full">Local Pride</span></div>
+                                </div>
+                                <div class="p-4">
+                                    <p class="text-[10px] font-medium text-bark-600 uppercase tracking-wider mb-1">Bethlehem Tees</p>
+                                    <h3 class="font-serif text-base font-semibold text-bark-800 mb-1 leading-snug">Bethlehem Kids Tee</h3>
+                                    <p class="text-sm font-semibold text-bark-800">$24</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="prod-item show" data-category="bethlehem">
+                            <div class="bg-cream-50 rounded-2xl overflow-hidden soft-shadow card-hover cursor-pointer group" onclick="openProduct({id:12, name:'Bethlehem Adult Tee', category:'Bethlehem Tees', price:'$28', description:'Match with your little one! Adult Bethlehem tee in the same iconic design. Unisex fit, available in XS–XXL. Soft tri-blend fabric that gets better with every wash.', image:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80', colors:['#2D1F1F','#E88FA3','#B5D5C5'], sizes:['XS','S','M','L','XL','XXL'], badge:null})">
+                                <div class="aspect-[3/4] overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&q=80" class="product-img w-full h-full object-cover transition-transform duration-500" alt="Adult Tee">
+                                </div>
+                                <div class="p-4">
+                                    <p class="text-[10px] font-medium text-bark-600 uppercase tracking-wider mb-1">Bethlehem Tees</p>
+                                    <h3 class="font-serif text-base font-semibold text-bark-800 mb-1 leading-snug">Bethlehem Adult Tee</h3>
+                                    <p class="text-sm font-semibold text-bark-800">$28</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div><!-- end grid -->
+
+                    <!-- Empty state -->
+                    <div id="emptyState" class="hidden text-center py-20">
+                        <span class="iconify text-5xl text-cream-300 mb-4" data-icon="ph:magnifying-glass"></span>
+                        <p class="font-serif text-xl text-bark-800 mb-2">No products found</p>
+                        <p class="text-bark-700/50 text-sm">Try selecting a different collection.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div><!-- end #collectionsPage -->
+
+
+<!-- ===================== FOOTER ===================== -->
+<!-- SHORTCODE: [sonnymoon_footer] -->
+<footer class="py-12 bg-bark-900 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-rose-500 flex items-center justify-center">
+                    <span class="iconify text-white text-sm" data-icon="ph:moon-stars-fill"></span>
+                </div>
+                <span class="font-serif text-xl font-semibold text-cream-100">SonnyMoon</span>
+            </div>
+            <div class="flex items-center gap-6 text-cream-200/40 text-sm">
+                <button onclick="showHome()" class="hover:text-cream-100 transition-colors">Our Story</button>
+                <button onclick="showCollections()" class="hover:text-cream-100 transition-colors">Collections</button>
+                <a href="#gallery" onclick="showHome()" class="hover:text-cream-100 transition-colors">Gallery</a>
+                <a href="#visit" onclick="showHome()" class="hover:text-cream-100 transition-colors">Visit</a>
+            </div>
+            <div class="flex items-center gap-3">
+                <a href="https://www.instagram.com/sonnymoonbethlehem/" target="_blank" class="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors">
+                    <span class="iconify text-cream-200/60 text-lg" data-icon="ph:instagram-logo-fill"></span>
+                </a>
+                <a href="https://web.facebook.com/p/SonnyMoon-61566438214204/" target="_blank" class="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors">
+                    <span class="iconify text-cream-200/60 text-lg" data-icon="ph:facebook-logo-fill"></span>
+                </a>
+            </div>
+        </div>
+        <div class="mt-8 pt-8 border-t border-white/5 text-center">
+            <p class="text-cream-200/30 text-xs">© 2025 SonnyMoon. All rights reserved. A women-owned small business in Bethlehem, PA.</p>
+        </div>
+    </div>
+</footer>
+
+
+<!-- ===================== STICKY CTA (Mobile) ===================== -->
+<div id="stickyCta" class="sticky-cta fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white/95 backdrop-blur-md border-t border-cream-300 px-4 py-3">
+    <div class="flex gap-3">
+        <a href="tel:+14847888415" class="flex-1 inline-flex items-center justify-center gap-2 py-3 bg-bark-800 text-cream-100 font-medium rounded-xl text-sm">
+            <span class="iconify" data-icon="ph:phone-fill"></span>
+            Call
+        </a>
+        <a href="https://maps.google.com/?q=459+Main+St+Bethlehem+PA" target="_blank" class="flex-1 inline-flex items-center justify-center gap-2 py-3 bg-rose-500 text-white font-medium rounded-xl text-sm">
+            <span class="iconify" data-icon="ph:navigation-arrow-fill"></span>
+            Directions
+        </a>
+    </div>
+</div>
+
+
+<!-- ===================== PRODUCT POPUP ===================== -->
+<!-- SHORTCODE: [sonnymoon_product_popup] -->
+<div id="productPopup" onclick="closePopupOutside(event)">
+    <div class="popup-inner" id="popupInner">
+        <!-- Close Button -->
+        <button onclick="closePopup()" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white soft-shadow flex items-center justify-center hover:bg-cream-200 transition-colors">
+            <span class="iconify text-xl text-bark-800" data-icon="ph:x-bold"></span>
+        </button>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+            <!-- Image -->
+            <div class="aspect-square md:aspect-auto md:h-full min-h-[280px] overflow-hidden rounded-t-3xl md:rounded-l-3xl md:rounded-tr-none">
+                <img id="popupImage" src="" alt="" class="w-full h-full object-cover">
+            </div>
+
+            <!-- Details -->
+            <div class="p-7 md:p-10 flex flex-col justify-between">
+                <div>
+                    <p id="popupCategory" class="text-xs font-semibold uppercase tracking-widest text-rose-400 mb-2"></p>
+                    <h2 id="popupName" class="font-serif text-2xl md:text-3xl font-semibold text-bark-800 mb-3"></h2>
+                    <p id="popupPrice" class="text-xl font-bold text-bark-800 mb-5"></p>
+                    <p id="popupDescription" class="text-bark-700/65 text-sm leading-relaxed mb-6"></p>
+
+                    <!-- Colors -->
+                    <div id="popupColorsSection" class="mb-5">
+                        <p class="text-xs font-semibold text-bark-700/60 uppercase tracking-wider mb-3">Color</p>
+                        <div id="popupColors" class="flex gap-2 flex-wrap"></div>
+                    </div>
+
+                    <!-- Sizes -->
+                    <div id="popupSizesSection" class="mb-6">
+                        <p class="text-xs font-semibold text-bark-700/60 uppercase tracking-wider mb-3">Size</p>
+                        <div id="popupSizes" class="flex gap-2 flex-wrap"></div>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <button onclick="handleAddToCart()" class="w-full py-4 bg-bark-800 text-cream-100 font-medium rounded-xl hover:bg-bark-900 transition-colors flex items-center justify-center gap-2">
+                        <span class="iconify" data-icon="ph:shopping-bag-fill"></span>
+                        Visit Store to Purchase
+                    </button>
+                    <div class="flex gap-3">
+                        <a href="tel:+14847888415" class="flex-1 py-3 bg-cream-200 text-bark-800 font-medium rounded-xl hover:bg-cream-300 transition-colors flex items-center justify-center gap-2 text-sm">
+                            <span class="iconify" data-icon="ph:phone-fill"></span>
+                            Call Us
+                        </a>
+                        <a href="https://maps.google.com/?q=459+Main+St+Bethlehem+PA" target="_blank" class="flex-1 py-3 bg-cream-200 text-bark-800 font-medium rounded-xl hover:bg-cream-300 transition-colors flex items-center justify-center gap-2 text-sm">
+                            <span class="iconify" data-icon="ph:map-pin-fill"></span>
+                            Directions
+                        </a>
+                    </div>
+                    <p class="text-center text-xs text-bark-700/40">459 Main St, Bethlehem, PA · In-store only</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ===================== JAVASCRIPT ===================== -->
+<script>
+    // ---- Navigation ----
+    const menuToggle = document.getElementById('menuToggle');
+    const menuClose = document.getElementById('menuClose');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    });
+
+    function closeMobileMenu() {
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    menuClose.addEventListener('click', closeMobileMenu);
+
+    // ---- Navbar scroll ----
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 50) {
+            navbar.style.backgroundColor = 'rgba(253,248,240,0.97)';
+            navbar.style.backdropFilter = 'blur(12px)';
+            navbar.style.boxShadow = '0 1px 3px rgba(61,44,44,0.06)';
+        } else {
+            navbar.style.backgroundColor = 'transparent';
+            navbar.style.backdropFilter = 'none';
+            navbar.style.boxShadow = 'none';
+        }
+    });
+
+    // ---- Sticky CTA ----
+    const stickyCta = document.getElementById('stickyCta');
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 600) stickyCta.classList.add('visible');
+        else stickyCta.classList.remove('visible');
+    });
+
+    // ---- Open Status ----
+    function updateOpenStatus() {
+        const now = new Date();
+        const day = now.getDay();
+        const h = now.getHours() + now.getMinutes()/60;
+        const close = (day === 1 || day === 2) ? 18 : 19;
+        const isOpen = h >= 10 && h < close;
+        const el = document.getElementById('openStatus');
+        if (!el) return;
+        el.innerHTML = isOpen
+            ? `<span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span><span class="text-xs font-medium text-green-600">Open Now</span>`
+            : `<span class="w-2 h-2 bg-rose-400 rounded-full"></span><span class="text-xs font-medium text-rose-500">Closed · Opens 10AM</span>`;
+    }
+    updateOpenStatus();
+    setInterval(updateOpenStatus, 60000);
+
+    // ---- Page Navigation ----
+    function showHome() {
+        document.getElementById('homePage').classList.remove('hidden-page');
+        document.getElementById('collectionsPage').classList.remove('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showCollections(collection) {
+        document.getElementById('homePage').classList.add('hidden-page');
+        document.getElementById('collectionsPage').classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (collection) {
+            setTimeout(() => {
+                const btn = document.querySelector(`[data-collection="${collection}"]`);
+                if (btn) filterCollection(collection, btn);
+            }, 100);
+        }
+    }
+
+    // ---- Collection Filter ----
+    function filterCollection(collection, clickedBtn) {
+        // Update all matching buttons (sidebar + topbar + mobile)
+        document.querySelectorAll('.collection-btn').forEach(b => {
+            b.classList.remove('active');
+            if (b.dataset.collection === collection) b.classList.add('active');
+        });
+
+        const items = document.querySelectorAll('.prod-item');
+        let visibleCount = 0;
+
+        items.forEach(item => {
+            const cat = item.dataset.category;
+            const show = collection === 'all' || cat === collection;
+            item.classList.toggle('show', show);
+            if (show) visibleCount++;
+        });
+
+        const empty = document.getElementById('emptyState');
+        if (empty) empty.classList.toggle('hidden', visibleCount > 0);
+    }
+
+    // ---- Mobile Filter Toggle ----
+    function toggleFilterPanel() {
+        const panel = document.getElementById('mobileFilterPanel');
+        panel.classList.toggle('hidden');
+    }
+
+    // ---- Product Popup ----
+    function openProduct(product) {
+        document.getElementById('popupImage').src = product.image;
+        document.getElementById('popupImage').alt = product.name;
+        document.getElementById('popupCategory').textContent = product.category;
+        document.getElementById('popupName').textContent = product.name;
+        document.getElementById('popupPrice').textContent = product.price;
+        document.getElementById('popupDescription').textContent = product.description;
+
+        // Colors
+        const colorsSection = document.getElementById('popupColorsSection');
+        const colorsEl = document.getElementById('popupColors');
+        if (product.colors && product.colors.length > 0) {
+            colorsSection.style.display = 'block';
+            colorsEl.innerHTML = '';
+            product.colors.forEach((color, i) => {
+                const sw = document.createElement('button');
+                sw.className = 'color-swatch' + (i === 0 ? ' active' : '');
+                sw.style.background = color;
+                sw.title = color;
+                sw.onclick = function() {
+                    document.querySelectorAll('#popupColors .color-swatch').forEach(s => s.classList.remove('active'));
+                    this.classList.add('active');
+                };
+                colorsEl.appendChild(sw);
+            });
+        } else {
+            colorsSection.style.display = 'none';
+        }
+
+        // Sizes
+        const sizesSection = document.getElementById('popupSizesSection');
+        const sizesEl = document.getElementById('popupSizes');
+        if (product.sizes && product.sizes.length > 0) {
+            sizesSection.style.display = 'block';
+            sizesEl.innerHTML = '';
+            product.sizes.forEach((size, i) => {
+                const btn = document.createElement('button');
+                btn.className = 'size-btn' + (i === 0 ? ' active' : '');
+                btn.textContent = size;
+                btn.onclick = function() {
+                    document.querySelectorAll('#popupSizes .size-btn').forEach(s => s.classList.remove('active'));
+                    this.classList.add('active');
+                };
+                sizesEl.appendChild(btn);
+            });
+        } else {
+            sizesSection.style.display = 'none';
+        }
+
+        document.getElementById('productPopup').classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closePopup() {
+        document.getElementById('productPopup').classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    function closePopupOutside(e) {
+        if (e.target === document.getElementById('productPopup')) closePopup();
+    }
+
+    // Close popup on Escape key
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closePopup();
+    });
+
+    function handleAddToCart() {
+        closePopup();
+        // Redirect to directions / store visit
+        window.open('https://maps.google.com/?q=459+Main+St+Bethlehem+PA', '_blank');
+    }
+
+    // ---- Scroll Animations ----
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.card-hover, .gallery-item, .product-card').forEach((el, i) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = `opacity 0.5s ease-out ${(i % 4) * 0.08}s, transform 0.5s ease-out ${(i % 4) * 0.08}s`;
+        observer.observe(el);
+    });
+</script>
+
+</body>
+</html>
